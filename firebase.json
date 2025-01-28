@@ -1,6 +1,7 @@
 {
   "hosting": {
     "public": "public",
+  "site": "sandeepcodewala",
     "ignore": [
       "firebase.json",
       "**/.*",

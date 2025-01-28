@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   height: 100vh;
-  background-image: url("https://files.oaiusercontent.com/file-1RdzoziZ7E4f8JdPgHAmfc?se=2025-01-28T08%3A51%3A12Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D1ec03fde-26a5-46ef-97e1-875d5f902a7b.webp&sig=DItwPCXOUegCr8ZkZWAXRIDKiNDyOf3aNAasgmqphnY%3D");
-  background-size: cover;
+  background-image: url("./xx.png");
+  background-size: contain;
   background-position: center;
   color: white;
   padding: 0 30px;
@@ -19,7 +19,7 @@
     0,
     0,
     0,
-    0.6
+    0
   ); /* Darker transparent background for better contrast */
   border-radius: 10px;
   margin-right: 20px;
@@ -52,9 +52,9 @@
 
 .right-section {
   flex: 1;
-  padding: 70px;
+  padding: 50px;
   background: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
-  padding-top: 20px;
+  padding-top: 50px;
   padding-bottom: 50px;
   border-radius: 10px;
   margin-left: 20px;
@@ -86,7 +86,7 @@ form h2 {
 }
 form input {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   margin: 10px 0;
   border-radius: 8px;
   border: 1px solid #ddd;
@@ -101,7 +101,7 @@ form input:focus {
 
 form button {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
   margin-top: 10px;
   background-color: #4caf50;
   color: white;
