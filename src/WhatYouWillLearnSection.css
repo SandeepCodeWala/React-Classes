@@ -1,0 +1,113 @@
+.learning-section {
+    padding: 50px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    color: #fff;
+  }
+  
+  .learning-heading {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .learning-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    text-align: left;
+    margin-top: 40px;
+  }
+  
+  .learning-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #fff;
+    font-size: 18px;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .learning-icon {
+    margin-right: 10px;
+    color: #00d9d9;
+    font-size: 24px;
+  }
+  
+  .register-btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-weight: 600;
+  }
+  
+  /* Popup Styles */
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  
+  .popup-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .popup-close {
+    background: transparent;
+    border: none;
+    font-size: 36px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+  
+  .form-label {
+    color: black;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .submit-btn {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

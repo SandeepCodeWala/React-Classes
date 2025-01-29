@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { db } from './firebase'; // Import Firestore instance
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { db } from "./firebase"; // Firestore instance
+import "./WhatYouWillLearnSection.css"; // Import external CSS
+
 function WhatYouWillLearnSection() {
   const [showPopup, setShowPopup] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", mobile: "" });
@@ -44,177 +46,55 @@ function WhatYouWillLearnSection() {
     }));
   };
 
-
-  
-
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
-      // Create a query to check if email or mobile already exists
-      const registrationsRef = collection(db, 'registrations');
+      // Check if user is already registered
+      const registrationsRef = collection(db, "registrations");
       const q = query(
         registrationsRef,
-        where('email', '==', formData.email),
-        where('mobile', '==', formData.mobile)
+        where("email", "==", formData.email),
+        where("mobile", "==", formData.mobile)
       );
-  
+
       const querySnapshot = await getDocs(q);
-  
-      // If the query returns results, the user is already registered
+
       if (!querySnapshot.empty) {
-        alert('User already registered with this email or mobile number!');
+        alert("User already registered with this email or mobile number!");
         return;
       }
-  
-      // Add the form data to Firestore
-      await addDoc(collection(db, 'registrations'), {
+
+      // Add new registration
+      await addDoc(collection(db, "registrations"), {
         name: formData.name,
         email: formData.email,
         mobile: formData.mobile,
         timestamp: new Date(),
       });
-  
-      console.log('Form data saved successfully!');
-      alert('Registration successful!');
+
+      alert("Registration successful!");
       setShowPopup(false);
-      setFormData({ name: '', email: '', mobile: '' }); // Clear the form
+      setFormData({ name: "", email: "", mobile: "" });
     } catch (error) {
-      console.error('Error saving form data: ', error);
-      alert('Failed to register. Please try again.');
+      console.error("Error saving form data: ", error);
+      alert("Failed to register. Please try again.");
     }
-  };
-  
-  
-
-  const sectionStyle = {
-    padding: "50px",
-    background: "rgba(0, 0, 0, 0.8)",
-    textAlign: "center",
-    maxWidth: "100%",
-    margin: "0 auto",
-    color: "#fff",
-  };
-
-  const headingStyle = {
-    fontSize: "48px",
-    fontWeight: "700",
-    fontFamily: "'Poppins', sans-serif",
-  };
-
-  const listContainerStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
-    gap: "100px",
-    textAlign: "left",
-    marginTop: "70px",
-  };
-
-  const listStyle = {
-    listStyleType: "none",
-    paddingLeft: "0",
-    fontSize: "24px",
-    lineHeight: "1.8",
-  };
-
-  const listItemStyle = {
-    display: "flex",
-    alignItems: "center",
-    padding: "10px 0",
-    borderBottom: "1px solid #fff",
-    fontFamily: "'Roboto', sans-serif",
-  };
-
-  const iconStyle = {
-    marginRight: "10px",
-    color: "#00d9d9",
-    fontSize: "40px",
-  };
-
-  const buttonStyle = {
-    padding: "10px",
-    fontSize: "2.5rem",
-    backgroundColor: "#007BFF",
-    color: "#fff",
-    border: "none",
-    borderRadius: "10px",
-    cursor: "pointer",
-    marginTop: "20px",
-    fontWeight: "600",
-  };
-
-  const buttonStyle1 = {
-    padding: "20px",
-    fontSize: "2.5rem",
-    backgroundColor: "#007BFF",
-    color: "#fff",
-    border: "none",
-    borderRadius: "10px",
-    cursor: "pointer",
-    marginTop: "100px",
-    fontWeight: "600",
-    marginBottom:'100px'
-  };
-
-  const popupOverlayStyle = {
-    position: "fixed",
-    top: "0",
-    left: "0",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.8)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: "999",
-  };
-
-  const popupContentStyle = {
-    background: "#fff",
-    padding: "30px",
-    borderRadius: "10px",
-    width: "700px",
-    textAlign: "center",
-    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-  };
-
-  const closeButtonStyle = {
-    background: "transparent",
-    border: "none",
-    fontSize: "80px",
-    fontWeight: "bold",
-    color: "red",
-    cursor: "pointer",
-    position: "absolute",
-    top: "50px",
-    right: "50px",
-  };
-
-  const inputStyle = {
-    width: "100%",
-    padding: "25px",
-    margin: "10px 0",
-    borderRadius: "5px",
-    border: "2px solid #ccc",
-    fontSize: "1.5rem",
   };
 
   return (
-    <div style={sectionStyle}>
-      <h2 style={headingStyle}>What You Will Learn in Free Class</h2>
-      <div style={listContainerStyle}>
+    <div className="learning-section">
+      <h2 className="learning-heading">What You Will Learn in Free Class</h2>
+      <div className="learning-list">
         {topics.map((topic, index) => (
-          <div key={index} style={listStyle}>
-            <li style={listItemStyle}>
-              <FaCheckCircle style={iconStyle} />
-              {topic}
-            </li>
+          <div key={index} className="learning-item">
+            <FaCheckCircle className="learning-icon" />
+            {topic}
           </div>
         ))}
       </div>
       <motion.button
-        style={buttonStyle1}
+        className="register-btn"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleRegisterClick}
@@ -223,27 +103,24 @@ function WhatYouWillLearnSection() {
       </motion.button>
 
       {showPopup && (
-        <div style={popupOverlayStyle}>
+        <div className="popup-overlay">
           <motion.div
-            style={popupContentStyle}
+            className="popup-content"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <button style={closeButtonStyle} onClick={handleClosePopup}>
+            <button className="popup-close" onClick={handleClosePopup}>
               &times;
             </button>
             <h3>Register Now</h3>
             <form onSubmit={handleSubmit}>
-              <label style={{ color: "black", fontSize: "30px" }}>
-                Fill Details:-
-              </label>
-
+              <label className="form-label">Fill Details:</label>
               <input
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                style={inputStyle}
+                className="form-input"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -252,7 +129,7 @@ function WhatYouWillLearnSection() {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                style={inputStyle}
+                className="form-input"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -261,14 +138,14 @@ function WhatYouWillLearnSection() {
                 type="tel"
                 name="mobile"
                 placeholder="Enter your mobile number"
-                style={inputStyle}
+                className="form-input"
                 value={formData.mobile}
                 onChange={handleChange}
                 required
               />
               <motion.button
                 type="submit"
-                style={buttonStyle}
+                className="submit-btn"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
